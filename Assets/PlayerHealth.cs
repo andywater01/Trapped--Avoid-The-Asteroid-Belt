@@ -11,7 +11,7 @@ public class PlayerHealth : MonoBehaviour
     public Sprite Hearts1;
     public Sprite Hearts2;
     public Sprite Hearts3;
-
+    public GameObject Restart;
     public int Health = 3;
 
     private void OnCollisionEnter2D(Collision2D collision) // Checks collision with asteroid
@@ -39,6 +39,7 @@ public class PlayerHealth : MonoBehaviour
             HealthBar.sprite = Hearts0;
             Health--;
             Debug.Log("Game Over");
+            Restart.SetActive(true);
         }
     }
 

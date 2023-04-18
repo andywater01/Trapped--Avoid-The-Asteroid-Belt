@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameTimer : MonoBehaviour
 {
@@ -15,5 +16,10 @@ public class GameTimer : MonoBehaviour
             timer += Time.deltaTime;
 
         slider.value = timer;
+
+        if (timer >= 100.0f)
+        {
+            SceneManager.LoadScene("FinishScene");
+        }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public BoxCollider2D collider2;
     public BoxCollider2D collider3;
     public BoxCollider2D collider4;
+
+    public CameraShake camShake;
 
     public void Awake()
     {
@@ -28,7 +31,10 @@ public class PlayerMovement : MonoBehaviour
             this.transform.position = mainCam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 100f));
         }
         
-        
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
 
     }
 
@@ -41,6 +47,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 StartCoroutine(CollisionHappened());
                 Debug.Log("Hit");
+                StartCoroutine(camShake.Shake(0.5f, 0.8f));
+                
             }
         }
         else
@@ -75,5 +83,8 @@ public class PlayerMovement : MonoBehaviour
         
         StopCoroutine(CollisionHappened());
     }
+
+
     
+
 }
