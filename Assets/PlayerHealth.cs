@@ -14,11 +14,14 @@ public class PlayerHealth : MonoBehaviour
     public GameObject Restart;
     public int Health = 3;
 
+    public AudioSource crash;
+
     private void OnCollisionEnter2D(Collision2D collision) // Checks collision with asteroid
     {
         if (collision.gameObject.tag == "Asteroid")
         {
             CheckHealth();
+            crash.Play();
         }
     }
 

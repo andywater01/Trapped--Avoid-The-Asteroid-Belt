@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public BoxCollider2D collider4;
 
     public CameraShake camShake;
+    public GameTimer gTimer;
 
     public void Awake()
     {
@@ -34,6 +35,11 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if (gTimer.hasWon() == true)
+        {
+            this.gameObject.SetActive(false);
         }
 
     }

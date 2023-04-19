@@ -9,6 +9,9 @@ public class GameTimer : MonoBehaviour
     public float timer = 0.0f;
     public Slider slider;
 
+    public GameObject YouWin;
+    public AudioSource WinSound;
+
     // Update is called once per frame
     void Update() // Keeps track of time and sets the slider value
     {
@@ -19,7 +22,29 @@ public class GameTimer : MonoBehaviour
 
         if (timer >= 100.0f)
         {
-            SceneManager.LoadScene("FinishScene");
+            StartCoroutine(Win());
+        }
+    }
+
+
+    public IEnumerator Win()
+    {
+        YouWin.SetActive(true);
+        WinSound.Play();
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("FinishScene");
+        StopCoroutine(Win());
+    }
+
+    public bool hasWon()
+    {
+        if (YouWin.activeInHierarchy == true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }
